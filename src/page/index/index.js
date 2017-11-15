@@ -5,7 +5,5 @@
 * @Last Modified time: 2017-11-15 15:51:45
 */
 var $ = require('jquery');
-// $('body').html('HELLO INDEX');
-console.log($('#div1').html());
-console.log($);
+$('body').html('HELLO INDEX');
 console.log("hello index");

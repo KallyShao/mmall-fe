@@ -13,6 +13,9 @@ var config =  {
      output: {
          path: './dist',
          filename: 'js/[name].js'
+     },
+     externals: {
+        'jquery': 'window.jQuery'
      }
  };
  module.exports = config;
