@@ -2,11 +2,15 @@
 * @Author: Administrator
 * @Date:   2017-11-15 15:37:16
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-16 16:45:34
+* @Last Modified time: 2017-11-17 14:00:47
 */
 var webpack           = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+//环境变量的配置，dev / online
+var WEBPACK_ENV        = process.env.WEBPACK_ENV || 'dev';
+console.log(WEBPACK_ENV);
 
 //获取HtmlWebpackPlugin参数的方法
 var getHtmlPlugin = function(name){
@@ -27,7 +31,8 @@ var config =  {
      	'login': ['./src/page/login/login.js']
      },
      output: {
-         path: './dist',
+         path: './dist',    //存放文件的路径，最终生成文件的目录
+         publicPath: '/dist',    //访问文件所用的路径
          filename: 'js/[name].js'
      },
      externals: {
@@ -48,12 +53,16 @@ var config =  {
     module: {  
         loaders: [  
             {  
-                test: /\.css$/, loader:  ExtractTextPlugin.extract("style-loader","css-loader")  
+                test: /\.css$/, loader:  ExtractTextPlugin.extract("style-loader","css-loader")  //样式的处理
             },  
             {  
-                test: /\.(gif|png|jpg)\??.*$/, loader: "url-loader"  
+                test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: "url-loader?limit=100&name=resource/[name].[ext]"  //图片的处理
             }
         ]  
     }  
  };
+
+ if('dev' === WEBPACK_ENV){
+    config.entry.common.push('webpack-dev-server/client?http://localhost:8088/');
+ }
  module.exports = config;
