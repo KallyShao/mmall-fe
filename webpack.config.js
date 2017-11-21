@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-15 15:37:16
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-21 10:15:58
+* @Last Modified time: 2017-11-21 11:41:12
 */
 var webpack           = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -27,8 +27,7 @@ var getHtmlPlugin = function(name){
 var config =  {
      entry: {
         'common': ['./src/page/common/index.js'],
-     	'index': ['./src/page/index/index.js'],
-     	'login': ['./src/page/login/index.js']
+     	'index': ['./src/page/index/index.js']
      },
      output: {
          path: './dist',    //存放文件的路径，最终生成文件的目录
