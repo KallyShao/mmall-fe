@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-15 15:37:16
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-20 21:54:36
+* @Last Modified time: 2017-11-21 10:15:58
 */
 var webpack           = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -16,9 +16,9 @@ console.log(WEBPACK_ENV);
 var getHtmlPlugin = function(name){
     return {
         template: './src/view/'+ name +'.html',    //html原始的模板
-        filename: 'view/'+ name +'.html',    //目标文件的位置，以output中的path作为相对路径
-        inject: true,
-        hash: true,
+        filename: 'view/'+ name +'.html',    //目标文件的位置，以output中的path作为相对路径,也就是打包之后存放的路径和文件名
+        inject: true,   //自动添加js和css
+        hash: true, //给css加版本号
         chunks: ['common', name] //需要打包的模块，对应的是entry中的js模块
     };
 };
@@ -56,7 +56,8 @@ var config =  {
                 test: /\.css$/, loader:  ExtractTextPlugin.extract("style-loader","css-loader")  //样式的处理
             },  
             {  
-                test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: "url-loader?limit=100&name=resource/[name].[ext]"  //图片的处理
+                test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: "url-loader?limit=100&name=resource/[name].[ext]"  
+                //图片和字体文件的处理，字体文件放在node_modules中
             }
         ]  
     },
