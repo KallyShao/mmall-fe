@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-23 17:22:46
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-23 17:37:45
+* @Last Modified time: 2017-11-25 11:48:04
 */
 
 /*通用头部导航*/
@@ -26,6 +26,7 @@
 	padding-left: 10px;
 	font-size: 15px;
 	border: 2px solid #c60023;
+	outline: none;
 }
 .header .search-con .search-btn{
 	position: absolute;
