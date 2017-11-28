@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-15 15:37:16
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-25 23:23:14
+* @Last Modified time: 2017-11-28 16:07:50
 */
 var webpack           = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -31,6 +31,7 @@ var config =  {
         'index': ['./src/page/index/index.js'],
         'list': ['./src/page/list/index.js'],
         'user-login': ['./src/page/user-login/index.js'],
+        'user-register': ['./src/page/user-register/index.js'],
         'result': ['./src/page/result/index.js'],
      },
      output: {
@@ -52,6 +53,7 @@ var config =  {
         //处理html模板
         new HtmlWebpackPlugin(getHtmlPlugin('index', '首页')),
         new HtmlWebpackPlugin(getHtmlPlugin('list', '产品列表')),
+        new HtmlWebpackPlugin(getHtmlPlugin('user-register', '用户注册')),
         new HtmlWebpackPlugin(getHtmlPlugin('user-login', '用户登录')),
         new HtmlWebpackPlugin(getHtmlPlugin('result', '操作结果'))
      ],
