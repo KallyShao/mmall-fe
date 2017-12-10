@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>带参数分页</title>
+    <script src="pagination/jquery-1.10.1.min.js"></script>
+    <script src="pagination/jquery.pagination.js"></script>
+</head>
+
+<body>
+    <div class="M-box4"></div>
+    <p>http://maxiaoxiang.com/jQuery-plugins/plugins/pagination.html</p>
+    <script type="text/javascript">
+    $('.M-box4').pagination({
+        pageCount: 50,
+        jump: true,
+        callback: function(api) {
+            var data = {
+                // page: api.getCurrent(),
+                // name: 'mss',
+                // say: 'oh'
+                keyword: '手机'
+            };
+            // $.getJSON('http://localhost:3000/data.json', data, function(json) {
+            //     console.log(json);
+            // });
+            $.getJSON('/product/list.do', data, function(json) {
+                console.log(json);
+            });
+        }
+    });
+    </script>
+</body>
+
+</html>
