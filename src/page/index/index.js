@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-15 11:15:47
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-01 17:34:54
+* @Last Modified time: 2017-12-19 17:27:46
 */
 
 'use strict';
@@ -34,8 +34,6 @@ $(function() {
   $('.banner-con .banner-arrow').click(function() {
     var forward = $(this).hasClass('prev') ? 'prev' : 'next'; //判断方向，下面的方法是一样的
     $slider.data('unslider')[forward]();
-     // var fn = this.className.split(' ')[1];
-     // $slider.data('unslider')[fn]();
   });
 
 });
