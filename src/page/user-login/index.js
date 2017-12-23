@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-25 23:13:40
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-26 19:07:35
+* @Last Modified time: 2017-12-23 13:28:04
 */
 require('./index.css');
 require('page/common/nav-simple/index.js');
@@ -62,8 +62,6 @@ var page = {
             password: $.trim($('#password').val())
         };
         var result = this.formValidate(data);
-        console.log(result.msg);
-
         if(result.status){
             _user.login(data, function(res){
                 window.location.href = _mm.getUrlParam('redirect') || './index.html';

@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-23 13:23:44
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-30 09:26:41
+* @Last Modified time: 2017-12-23 17:20:29
 */
 
 var _mm = require('util/mm.js');
@@ -36,14 +36,28 @@ var _user = {
 		})
 	},
 	//注册时检查用户名是否已存在
-	checkRegister: function(resolve, reject){
+	checkRegister: function(username, resolve, reject){
 		_mm.request({
-			url: _mm.getServerUrl('/user/register.do'),
-			method: 'GET',
+			url: _mm.getServerUrl('/user/check_valid.do'),
+			method: 'POST',
+			data: {
+				type: 'username',
+				str: username
+			},
 			success: resolve,
 			error: reject
 		})
-	}
+	},
+	//注册
+	register: function(userInfo, resolve, reject){
+		_mm.request({
+			url: _mm.getServerUrl('/user/register.do'),
+			method: 'POST',
+			data: userInfo,
+			success: resolve,
+			error: reject
+		})
+	},
 
 }
 module.exports = _user;
