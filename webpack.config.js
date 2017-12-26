@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-15 15:37:16
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-01 17:11:26
+* @Last Modified time: 2017-12-26 21:26:09
 */
 var webpack           = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -33,6 +33,7 @@ var config =  {
         'user-login': ['./src/page/user-login/index.js'],
         'user-register': ['./src/page/user-register/index.js'],
         'user-pass-reset': ['./src/page/user-pass-reset/index.js'],
+        'user-center': ['./src/page/user-center/index.js'],
         'result': ['./src/page/result/index.js'],
         'result': ['./src/page/result/index.js'],
      },
@@ -58,6 +59,7 @@ var config =  {
         new HtmlWebpackPlugin(getHtmlPlugin('user-register', '用户注册')),
         new HtmlWebpackPlugin(getHtmlPlugin('user-login', '用户登录')),
         new HtmlWebpackPlugin(getHtmlPlugin('user-pass-reset', '找回密码')),
+        new HtmlWebpackPlugin(getHtmlPlugin('user-center', '用户中心')),
         new HtmlWebpackPlugin(getHtmlPlugin('result', '操作结果'))
      ],
     module: {  
