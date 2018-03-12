@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-28 16:08:22
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-23 17:30:00
+* @Last Modified time: 2017-12-30 14:16:40
 */
 
 require('./index.css');
@@ -60,6 +60,8 @@ var page = {
 				}, function(errMsg){
 					formError.show(errMsg);
 				})
+			}else{
+				formError.show(validateResult.msg);
 			}
 		})
 	},

@@ -1,9 +1,19 @@
 /*
 * @Author: Administrator
-* @Date:   2017-12-01 14:47:27
+* @Date:   2018-01-04 22:53:37
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-19 16:43:39
+* @Last Modified time: 2018-03-01 22:17:16
 */
+/*面包屑导航*/
+.crumb{
+    margin-bottom: 15px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    background: #eee;
+    color: #888;
+    border-top: 2px solid #c60023
+}
 
 /* 排序按钮 */
 .sort-con{
@@ -32,10 +42,10 @@
     top: 8px;
     right: 8px;
 }
-.sort-con .sort-item.asc .fa-sort-desc{
+.sort-con .sort-item.active-asc .fa-sort-desc{
     opacity: .6;
 }
-.sort-con .sort-item.desc .fa-sort-asc{
+.sort-con .sort-item.active-desc .fa-sort-asc{
     opacity: .6;
 }
 

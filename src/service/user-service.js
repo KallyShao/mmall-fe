@@ -1,14 +1,14 @@
 /*
-* @Author: Administrator
-* @Date:   2017-11-23 13:23:44
-* @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-26 22:30:10
-*/
+ * @Author: Administrator
+ * @Date:   2017-11-23 13:23:44
+ * @Last Modified by:   Administrator
+ * @Last Modified time: 2018-02-04 12:20:54
+ */
 
 var _mm = require('util/mm.js');
 var _user = {
 	//登录
-	login: function(userInfo, resolve, reject){
+	login: function(userInfo, resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/login.do'),
 			method: 'POST',
@@ -18,7 +18,7 @@ var _user = {
 		})
 	},
 	//登出
-	logout: function(resolve, reject){
+	logout: function(resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/logout.do'),
 			method: 'POST',
@@ -27,7 +27,7 @@ var _user = {
 		})
 	},
 	//检查登录状态
-	checkLogin: function(resolve, reject){
+	checkLogin: function(resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/get_user_info.do'),
 			method: 'POST',
@@ -36,7 +36,7 @@ var _user = {
 		})
 	},
 	//注册时检查用户名是否已存在
-	checkRegister: function(username, resolve, reject){
+	checkRegister: function(username, resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/check_valid.do'),
 			method: 'POST',
@@ -49,7 +49,7 @@ var _user = {
 		})
 	},
 	//注册
-	register: function(userInfo, resolve, reject){
+	register: function(userInfo, resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/register.do'),
 			method: 'POST',
@@ -59,7 +59,7 @@ var _user = {
 		})
 	},
 	//获取密码提示问题
-	getPassTipQuestion: function(username, resolve, reject){
+	getPassTipQuestion: function(username, resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/forget_get_question.do'),
 			method: 'POST',
@@ -71,7 +71,7 @@ var _user = {
 		})
 	},
 	//验证密码提示问题的答案
-	forgetCheckAnswer: function(userInfo, resolve, reject){
+	forgetCheckAnswer: function(userInfo, resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/forget_check_answer.do'),
 			method: 'POST',
@@ -80,17 +80,8 @@ var _user = {
 			error: reject
 		})
 	},
-	//获取当前登录用户的详细信息，并强制登录 /user/get_information.do
-	getInformation: function(resolve, reject){
-		_mm.request({
-			url: _mm.getServerUrl('/user/get_information.do'),
-			method: 'POST',
-			success: resolve,
-			error: reject
-		})
-	},
 	//忘记密码的重设密码 /user/forget_reset_password.do
-	forgetResetPass: function(userInfo, resolve, reject){
+	forgetResetPass: function(userInfo, resolve, reject) {
 		_mm.request({
 			url: _mm.getServerUrl('/user/forget_reset_password.do'),
 			method: 'POST',
@@ -100,14 +91,34 @@ var _user = {
 		})
 	},
 	//获取登录用户信息,status 0 & 10
-	getInformation: function(resolve, reject){
+	getInformation: function(resolve, reject) {
 		_mm.request({
-			url: _mm.getServerUrl(' /user/get_information.do'),
+			url: _mm.getServerUrl('/user/get_information.do'),
 			method: 'POST',
 			success: resolve,
 			error: reject
 		})
 	},
+	//登录状态下修改密码
+	userPassUpdate: function(passInfo, resolve, reject) {
+		_mm.request({
+			url: _mm.getServerUrl('/user/reset_password.do'),
+			data: passInfo,
+			method: 'POST',
+			success: resolve,
+			error: reject
+		})
+	},
+	//修改用户资料
+	updateUserInfo: function(userInfo, resolve, reject) {
+		_mm.request({
+			url: _mm.getServerUrl('/user/update_information.do'),
+			data: userInfo,
+			method: 'POST',
+			success: resolve,
+			error: reject
+		})
+	}
 
 }
 module.exports = _user;

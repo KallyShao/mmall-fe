@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-12-26 21:21:52
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-26 22:35:04
+* @Last Modified time: 2017-12-30 14:57:00
 */
 
 'use strict';
@@ -26,7 +26,7 @@ var page = {
             var html = _mm.renderHtml(templateIndex, res);
             $('.panel-body').html(html);
         }, function(errMsg){
-
+            console.log(errMsg);
         })
     }
 };

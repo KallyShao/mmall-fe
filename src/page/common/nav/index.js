@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-23 11:00:14
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-23 11:53:18
+* @Last Modified time: 2018-01-05 21:15:05
 */
 
 require('./index.css');
@@ -47,8 +47,10 @@ var nav = {
 	//加载购物车数量
 	loadCartCount: function(){
 		_cart.getCartCount(function(res){
+			console.log(res);
 			$('.nav .cart-count').text(res || 0);
 		}, function(errMsg){
+			console.log(errMsg);
 			$('.nav .cart-count').text(0);	//如果出错，购物车默认数量为0
 		})
 	}

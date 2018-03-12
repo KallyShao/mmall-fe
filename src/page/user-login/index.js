@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-25 23:13:40
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-23 13:28:04
+* @Last Modified time: 2018-01-04 20:16:49
 */
 require('./index.css');
 require('page/common/nav-simple/index.js');
@@ -64,7 +64,18 @@ var page = {
         var result = this.formValidate(data);
         if(result.status){
             _user.login(data, function(res){
+                // console.log(res);
                 window.location.href = _mm.getUrlParam('redirect') || './index.html';
+
+//////////////////////////////////////
+//测试获取登录用户信息
+    _user.checkLogin(function(res){
+        console.log(res);
+    }, function(errMsg){
+        console.log(errMsg);
+    })
+////////////////////////////////////////
+
             }, function(errMsg){
                 formError.show(errMsg);
             })

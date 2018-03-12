@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-15 11:15:47
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-12-19 17:27:46
+* @Last Modified time: 2017-12-30 14:37:51
 */
 
 'use strict';
@@ -16,9 +16,6 @@ var navSide = require('page/common/nav-side/index.js');
 
 var templateIndex = require('./banner.string');
 
-
-
- 
 
 //初始化slider
 $(function() {
