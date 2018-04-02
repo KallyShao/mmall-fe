@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2017-11-15 15:37:16
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-02-02 21:36:56
+ * @Last Modified time: 2018-03-24 20:51:27
  */
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -70,16 +70,20 @@ var config = {
     ],
     module: {
         loaders: [{
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract("style-loader", "css-loader") //样式的处理
-        }, {
-            test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
-            loader: "url-loader?limit=100&name=resource/[name].[ext]"
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader") //样式的处理
+            },
             //图片和字体文件的处理，字体文件放在node_modules中
-        }, {
-            test: /\.string$/,
-            loader: 'html-loader'
-        }]
+            {
+                test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
+                loader: "url-loader?limit=100&name=resource/[name].[ext]"
+            },
+            //html模板
+            {
+                test: /\.string$/,
+                loader: 'html-loader'
+            }
+        ]
     },
     resolve: {
         alias: {

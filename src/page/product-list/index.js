@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2018-01-04 22:53:30
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-03-12 21:38:05
+ * @Last Modified time: 2018-04-02 22:34:20
  */
 
 require('./index.css');
@@ -16,31 +16,35 @@ var Pagination = require('util/pagination/index.js');
 
 var page = {
     data: {
-        categoryId: _mm.getUrlParam('categoryId'),
-        keyword: _mm.getUrlParam('keyword'),
-        orderBy: '',
+        listParam: {
+            categoryId: _mm.getUrlParam('categoryId') || '',
+            keyword: _mm.getUrlParam('keyword') || '',
+            orderBy: _mm.getUrlParam('orderBy') || 'default',
+            pageNum: _mm.getUrlParam('pageNum') || 1,
+            pageSize: _mm.getUrlParam('pageSize') || 20
+        }
     },
     init: function() {
         this.onLoad();
         this.bindEvent();
     },
     onLoad: function() {
-        var productInfo = {
-            keyword: this.data.keyword,
-            categoryId: this.data.categoryId
-        };
-        this.loadProductList(productInfo);
+        this.loadProductList();
     },
-    loadProductList: function(productInfo) {
+    loadProductList: function() {
         var _this = this,
             html = '',
             listParam = this.data.listParam,
             $pListCon = $('.p-list-con');
+
+        console.log(999);
+        return;
+
         $pListCon.html('<div class="loading"></div>');
         //删除参数中不必要的字段
         listParam.categoryId ? (delete listParam.keyword) : (delete listParam.categoryId);
         //请求接口
-        _product.getProductList(productInfo, function(res) {
+        _product.getProductList(listParam, function(res) {
             html = _mm.renderHtml(templateIndex, {
                 list: res.list
             });
@@ -59,17 +63,23 @@ var page = {
     },
     //加载分页信息
     loadPagination: function(pageInfo) {
-        this.loadPagination ? '' : (this.pagination = new Pagination());
-        this.pagination.render({
-
-        });
-    }
+        var _this = this;
+        this.pagination ? '' : (this.pagination = new Pagination());
+        this.pagination.render($.extend({}, pageInfo, {
+            container: $('.pagination'),
+            onSelectPage: function(pageNum) {
+                _this.data.listParam.pageNum = pageNum;
+                _this.loadProductList();
+            }
+        }));
+    },
     bindEvent: function() {
         var _this = this;
         $('.sort-item').click(function() {
             //将this缓存起来，jq优化方式之一
-            var $this = $(this),
-                _this.data.listParam.pageNum = 1;
+            var $this = $(this);
+            _this.data.listParam.pageNum = 1;
+
             if ($this.data('type') == 'default') {
                 if ($this.hasClass('active')) {
                     return;
