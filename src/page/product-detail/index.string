@@ -37,9 +37,15 @@
     <div class="detail-tab-con">
         <ul class="tab-list">
             <li class="tab-item active">详细描述</li>
+            <li class="tab-item">商品参数</li>
+            <li class="tab-item">其他</li>
         </ul>
     </div>
     <div class="detail-con">
-        {{{detail}}}
+        <div class="detail-item active">
+            {{{detail}}}
+        </div>
+        <div class="detail-item">商品参数</div>
+        <div class="detail-item">其他</div>
     </div>
 </div>

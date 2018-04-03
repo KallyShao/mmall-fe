@@ -2,18 +2,9 @@
 * @Author: Administrator
 * @Date:   2018-01-04 22:53:37
 * @Last Modified by:   Administrator
-* @Last Modified time: 2018-03-01 22:17:16
+* @Last Modified time: 2018-04-03 21:25:04
 */
-/*面包屑导航*/
-.crumb{
-    margin-bottom: 15px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 14px;
-    background: #eee;
-    color: #888;
-    border-top: 2px solid #c60023
-}
+
 
 /* 排序按钮 */
 .sort-con{

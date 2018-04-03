@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2018-01-04 22:55:21
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-02-04 17:56:44
+ * @Last Modified time: 2018-04-03 22:04:08
  */
 
 require('./index.css');
@@ -11,6 +11,7 @@ require('page/common/header/index.js');
 
 var _mm = require('util/mm.js');
 var _product = require('service/product-service.js');
+var _cart = require('service/cart-service.js');
 var templateIndex = require('./index.string');
 
 var page = {
@@ -22,18 +23,21 @@ var page = {
         this.bindEvent();
     },
     onLoad: function() {
+        //如果没有传produtId,自动跳回首页
+        if (!this.data.productId) {
+            _mm.goHome();
+            return;
+        }
         var _this = this,
             html = '';
         _product.getProductDetail({
             productId: _this.data.productId
         }, function(res) {
-            console.log(res);
             _this.dataFilter(res);
-            console.log(res);
             html = _mm.renderHtml(templateIndex, res);
             $('.page-wrap').html(html);
         }, function(err) {
-            console.log(err);
+            $('.page-wrap').html('<p class="err-tip">该商品去火星了~</p>');
         });
     },
     bindEvent: function() {

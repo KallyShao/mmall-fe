@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-23 17:22:46
 * @Last Modified by:   Administrator
-* @Last Modified time: 2018-03-01 21:23:34
+* @Last Modified time: 2018-04-03 21:25:01
 */
 
 /*通用头部导航*/
@@ -33,4 +33,23 @@
 	position: absolute;
 	height: 44px;
 	width: 80px;
+}
+/*面包屑导航*/
+.crumb{
+    margin-bottom: 15px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    background: #eee;
+    color: #888;
+    border-top: 2px solid #c60023
+}
+.crumb .crumb-item {
+    color: #888;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.crumb .crumb-item:hover {
+    color: #c60023
 }

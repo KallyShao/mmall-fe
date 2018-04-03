@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2018-01-04 22:55:29
 * @Last Modified by:   Administrator
-* @Last Modified time: 2018-01-04 22:58:27
+* @Last Modified time: 2018-04-03 21:53:14
 */
 
 
@@ -112,6 +112,7 @@
 .intro-wrap .p-info-con .p-count-con .p-count-btn.minus{
     bottom: 0;
 }
+
 /* 商品详细信息 */
 .detail-wrap{
     margin-top: 15px;
@@ -125,8 +126,8 @@
 .detail-wrap .tab-list .tab-item{
     float: left;
     width: 100px;
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
     font-size: 16px;
     text-align: center;
     cursor: pointer;
@@ -142,6 +143,12 @@
 .detail-wrap .detail-con img{
     display: block;
     margin: 0 auto;
+}
+.detail-item{
+    display: none;
+}
+.detail-item.active{
+    display: block;
 }
 /* 错误信息 */
 .err-tip{

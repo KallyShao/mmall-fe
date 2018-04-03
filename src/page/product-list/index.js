@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2018-01-04 22:53:30
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-02 22:34:20
+ * @Last Modified time: 2018-04-03 21:14:51
  */
 
 require('./index.css');
@@ -37,8 +37,6 @@ var page = {
             listParam = this.data.listParam,
             $pListCon = $('.p-list-con');
 
-        console.log(999);
-        return;
 
         $pListCon.html('<div class="loading"></div>');
         //删除参数中不必要的字段

@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2017-11-23 17:22:38
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-02 22:32:23
+ * @Last Modified time: 2018-04-03 21:17:57
  */
 
 require('./index.css');
@@ -38,7 +38,7 @@ var header = {
         var keyword = $.trim($('#search-input').val());
         //如果提交的时候有keyword，正常跳转到list页
         if (keyword) {
-            window.location.href = './list.html?keyword=' + keyword;
+            window.location.href = './product-list.html?keyword=' + keyword;
         }
         //如果提交的时候没有keyword,返回首页
         else {
