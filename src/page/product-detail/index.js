@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2018-01-04 22:55:21
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-03 22:04:08
+ * @Last Modified time: 2018-04-07 21:23:07
  */
 
 require('./index.css');
@@ -41,7 +41,41 @@ var page = {
         });
     },
     bindEvent: function() {
-
+        var _this = this;
+        //图片预览
+        $(document).on('mouseenter', '.p-img-item', function() {
+            var imgSrc = $(this).find('.p-img').attr('src');
+            $('.main-img').attr('src', imgSrc);
+        });
+        //修改数量
+        $(document).on('click', '.p-count-btn', function() {
+            var type = $(this).hasClass('plus') ? 'plus' : 'minus',
+                $pCount = $('.p-count'),
+                currCount = parseInt($pCount.val()),
+                minCount = 1,
+                maxCount = parseInt($('.stock').text()) || 1;
+            if (type === 'plus') {
+                $pCount.val(currCount < maxCount ? currCount + 1 : maxCount);
+            } else if (type === 'minus') {
+                $pCount.val(currCount > minCount ? currCount - 1 : minCount);
+            }
+        });
+        //加入购物车
+        $(document).on('click', '.cart-add', function() {
+            var stock = parseInt($('.stock').text());
+            if (stock <= 0) {
+                _mm.errorTips('该商品库存为0！');
+                return;
+            }
+            _cart.addToCart({
+                productId: _this.data.productId,
+                count: $('.p-count').val()
+            }, function(res) {
+                _mm.successTips('商品添加成功！');
+            }, function(errMsg) {
+                _mm.errorTips(errMsg);
+            });
+        });
     },
     dataFilter: function(data) {
         //方式一
@@ -54,11 +88,8 @@ var page = {
 
         //方式二
         data.subImages = data.subImages.split(',');
-        // console.log(data.subImages);
-
         $.each(data.subImages, function(index, value) {
             // data.subImages[index] = '/mm/' + data.subImages[index];
-            console.log(value);
             value = '/mm/' + value;
         })
     }
