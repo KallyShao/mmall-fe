@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2017-11-15 15:37:16
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-07 22:46:09
+ * @Last Modified time: 2018-04-12 21:41:48
  */
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -39,6 +39,7 @@ var config = {
         'user-center-update': ['./src/page/user-center-update/index.js'], //修改资料
         'result': ['./src/page/result/index.js'],
         'cart-list': ['./src/page/cart-list/index.js'],
+        'order-confirm': ['./src/page/order-confirm/index.js'],
         'order-list': ['./src/page/order-list/index.js'],
         'order-detail': ['./src/page/order-detail/index.js'],
     },
@@ -70,6 +71,7 @@ var config = {
         new HtmlWebpackPlugin(getHtmlPlugin('user-center-update', '修改资料')),
         new HtmlWebpackPlugin(getHtmlPlugin('result', '操作结果')),
         new HtmlWebpackPlugin(getHtmlPlugin('cart-list', '购物车列表')),
+        new HtmlWebpackPlugin(getHtmlPlugin('order-confirm', '订单确认')),
         new HtmlWebpackPlugin(getHtmlPlugin('order-list', '订单列表')),
         new HtmlWebpackPlugin(getHtmlPlugin('order-detail', '订单详情')),
     ],

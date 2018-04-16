@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2017-11-23 14:09:53
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-09 22:43:39
+ * @Last Modified time: 2018-04-10 21:54:00
  */
 
 var _mm = require('util/mm.js');
@@ -64,6 +64,26 @@ var _cart = {
     unselectAllProduct: function(resolve, reject) {
         _mm.request({
             url: _mm.getServerUrl('/cart/un_select_all.do'),
+            success: resolve,
+            error: reject
+        });
+    },
+    // 更新购物车商品数量
+    updateProduct: function(productInfo, resolve, reject) {
+        _mm.request({
+            url: _mm.getServerUrl('/cart/update.do'),
+            data: productInfo,
+            success: resolve,
+            error: reject
+        });
+    },
+    // 删除指定商品
+    deleteProduct: function(productIds, resolve, reject) {
+        _mm.request({
+            url: _mm.getServerUrl('/cart/delete_product.do'),
+            data: {
+                productIds: productIds
+            },
             success: resolve,
             error: reject
         });
