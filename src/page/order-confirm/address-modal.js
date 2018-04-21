@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2018-04-17 20:23:13
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-17 22:19:22
+ * @Last Modified time: 2018-04-18 22:09:47
  */
 var _mm = require('util/mm.js');
 var _addr = require('service/addr-service.js');
@@ -13,6 +13,7 @@ var addrModal = {
     show: function(option) {
         //将传进来的option绑定到当前对象，这样其他方法也可以用
         this.option = option;
+        this.option.data = option.data || {};
         this.$modalWrap = $('.modal-wrap');
         //渲染页面
         this.loadModal();
@@ -43,7 +44,13 @@ var addrModal = {
                     _mm.errorTips(receiverInfo.errMsg);
                 });
             } else if (isUpdate && receiverInfo.status) {
-
+                _addr.update(receiverInfo.data, function(res) {
+                    _mm.successTips('地址修改成功');
+                    _this.hide();
+                    typeof _this.option.onSuccess === 'function' && _this.option.onSuccess(res);
+                }, function(errMsg) {
+                    _mm.errorTips(errMsg);
+                });
             }
             //验证不通过
             else {
@@ -101,15 +108,20 @@ var addrModal = {
             data: this.option.data
         });
         this.$modalWrap.html(addrModalHtml);
-        //加载身份
+        //加载省份
         this.loadProvince();
-        //加载城市
-        this.loadCities();
+
     },
     loadProvince: function() {
         var provinces = _cities.getProvinces() || [],
             $provinceSelect = this.$modalWrap.find('#receiver-province');
         $provinceSelect.html(this.getSelectOption(provinces));
+        //如果是更新地址，并且有省份信息，做省份回填
+        if (this.option.isUpdate && this.option.data.receiverProvince) {
+            $provinceSelect.val(this.option.data.receiverProvince);
+            //加载城市
+            this.loadCities(this.option.data.receiverProvince);
+        }
     },
     //获取select框的选项，输入: array, 输出html
     getSelectOption: function(optionArr) {
@@ -124,6 +136,10 @@ var addrModal = {
         var cityArr = _cities.getCities(selectedProvince) || [],
             $citySelect = this.$modalWrap.find('#receiver-city');
         $citySelect.html(this.getSelectOption(cityArr));
+        //如果是更新地址，并且有城市信息，做城市回填
+        if (this.option.isUpdate && this.option.data.receiverCity) {
+            $citySelect.val(this.option.data.receiverCity);
+        }
     }
 };
 module.exports = addrModal;

@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2018-04-16 21:45:28
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-17 22:17:36
+ * @Last Modified time: 2018-04-18 22:30:35
  */
 
 var _mm = require('util/mm.js');
@@ -23,6 +23,24 @@ var _addr = {
         _mm.request({
             url: '/shipping/add.do',
             data: addrInfo,
+            success: resolve,
+            error: reject
+        });
+    },
+    update: function(addrInfo, resolve, reject) {
+        _mm.request({
+            url: '/shipping/update.do',
+            data: addrInfo,
+            success: resolve,
+            error: reject
+        });
+    },
+    deleteAddr: function(shippingId, resolve, reject) {
+        _mm.request({
+            url: '/shipping/del.do',
+            data: {
+                shippingId: shippingId
+            },
             success: resolve,
             error: reject
         });
