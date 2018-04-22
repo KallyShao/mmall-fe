@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2018-04-12 21:56:00
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-21 23:26:13
+ * @Last Modified time: 2018-04-22 13:25:33
  */
 
 var _mm = require('util/mm.js');
@@ -32,5 +32,22 @@ var _order = {
             error: reject
         })
     },
+    getOrderDetail: function(orderNo, resolve, reject) {
+        _mm.request({
+            url: _mm.getServerUrl('/order/detail.do'),
+            data: orderNo,
+            success: resolve,
+            error: reject
+        })
+    },
+    //取消订单
+    orderCancel: function(orderNo, resolve, reject) {
+        _mm.request({
+            url: _mm.getServerUrl('/order/cancel.do'),
+            data: orderNo,
+            success: resolve,
+            error: reject
+        })
+    }
 }
 module.exports = _order;

@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-11-23 10:59:46
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-11-23 11:08:47
+* @Last Modified time: 2018-04-22 15:48:35
 */
 
 .nav{
@@ -13,6 +13,10 @@
 /*用户部分*/
 .nav .user{
 	float: left;
+}
+.nav .user .username{
+    text-decoration: none;
+    color: #c60023;
 }
 .nav .user.login{
 	display: none;

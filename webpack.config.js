@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2017-11-15 15:37:16
  * @Last Modified by:   Administrator
- * @Last Modified time: 2018-04-12 21:41:48
+ * @Last Modified time: 2018-04-22 22:33:55
  */
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -17,6 +17,7 @@ var getHtmlPlugin = function(name, title) {
     return {
         template: './src/view/' + name + '.html', //html原始的模板
         filename: 'view/' + name + '.html', //目标文件的位置，以output中的path作为相对路径,也就是打包之后存放的路径和文件名
+        favicon: './favicon.ico',
         title: title,
         inject: true, //自动添加js和css
         hash: true, //给css加版本号
@@ -42,10 +43,13 @@ var config = {
         'order-confirm': ['./src/page/order-confirm/index.js'],
         'order-list': ['./src/page/order-list/index.js'],
         'order-detail': ['./src/page/order-detail/index.js'],
+        'payment': ['./src/page/payment/index.js']
     },
     output: {
-        path: './dist', //存放文件的路径，最终生成文件的目录
-        publicPath: '/dist', //访问文件所用的路径
+        // path: './dist', //存放文件的路径，最终生成文件的目录
+        path: __dirname + '/dist/', //webpack从2.x开始强制使用绝对路径
+        // publicPath: '/dist/', //访问文件所用的路径
+        publicPath: 'dev' === WEBPACK_ENV ? '/dist/' : '//s.happymmall.com/mmall-fe/dist/', //如果是线上环境，将/dist/替换为存放静态资源的域名
         filename: 'js/[name].js'
     },
     externals: {
@@ -74,6 +78,7 @@ var config = {
         new HtmlWebpackPlugin(getHtmlPlugin('order-confirm', '订单确认')),
         new HtmlWebpackPlugin(getHtmlPlugin('order-list', '订单列表')),
         new HtmlWebpackPlugin(getHtmlPlugin('order-detail', '订单详情')),
+        new HtmlWebpackPlugin(getHtmlPlugin('payment', '订单支付'))
     ],
     module: {
         loaders: [{
@@ -88,7 +93,11 @@ var config = {
             //html模板
             {
                 test: /\.string$/,
-                loader: 'html-loader'
+                loader: 'html-loader',
+                query: {
+                    minimize: true,
+                    removeAttributeQuotes: false
+                }
             }
         ]
     },
